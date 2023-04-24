@@ -1,0 +1,32 @@
+syntax = "proto3"; 
+
+package notification;
+// option go_package = "./generated";
+
+message NotificationResponse {
+  int32 pendaftaran_t_id = 1;
+  string message = 2;
+  string no_rm = 3;
+  string nama_pasien = 4;
+  string tindakan_pelayanan_t_id = 5;
+}
+
+
+// message NotificationRequest {
+//   int32 pendaftaran_t_id = 1;
+//   string tindakan_pelayanan_t_id = 2;
+//   string pasien_kirim_ke_unit_lain_t_id = 3;
+// }
+message StreamingNotification {
+  NotificationResponse notification_response = 1;
+  // Add any additional fields for the streaming notification
+}
+
+message Empty {}
+
+service NotificationService {
+  // rpc SendNotification(NotificationRequest) returns (NotificationResponse);
+  rpc ListenForNotifications(Empty) returns (stream StreamingNotification) {
+     
+  }
+} 

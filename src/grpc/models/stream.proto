@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package stream;
+
+service StreamService {
+  rpc StreamData(stream Empty) returns (stream DataResponse) {}
+}
+
+message Empty {}
+message DataResponse {
+  string no_rm = 1;
+  int32 pendaftaran_t_id = 2;
+  string message = 3;
+  int32 pasien_kirim_ke_unit_lain_t_id = 4;
+}

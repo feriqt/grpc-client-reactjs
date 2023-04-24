@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package generated;
+
+message Contact {
+  string id = 1;
+  string name = 2;
+  string number = 3;
+}
+
+message CreateContactRequest {
+  string name = 1;
+  string number = 2;
+  int32 id = 3;
+}
+
+service ContactService {
+  rpc CreateContact(Contact) returns (Contact) {}
+  rpc GetContact(ContactId) returns (Contact) {}
+  rpc UpdateContact(Contact) returns (Contact) {}
+  rpc DeleteContact(ContactId) returns (DeleteResponse) {}
+}
+
+message ContactId {
+  string id = 1;
+}
+
+message DeleteResponse {
+  bool success = 1;
+  string message = 2;
+}
